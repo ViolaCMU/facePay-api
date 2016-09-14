@@ -8,8 +8,10 @@ test = Flask(__name__)
 def getContent(str):
 	return str+"hehe"
 
-@test.route('/img', methods=['POST'])
+@test.route('/img', methods=['GET', 'POST'])
 def get_customerInfo():
+    if request.method == 'GET':
+        return 'connected'
     if request.method == 'POST':
         f = request.files['img']
         return f.filename
